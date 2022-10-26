@@ -1,6 +1,9 @@
-#include <stdio.h>
-#include <stdlib.h>
+// Nomes: Caio Pedroso Gazen, Vitor sepulveda Monteiro, Rafael Cruz Ferreira, Edvander Sperber Selos Silva, Matheus Soares Simao dos Santos
 
+#include <stdio.h>
+#include <stdlib.h> 
+
+// Declarar variaveis globais
 int NumeroDeVertices, NumeroDeArestas;
 
 int** LerGrafo(int** grafo){
@@ -57,9 +60,9 @@ int main(){
 
     // imprimir a lista de adjacencia
     printf("Lista de Adjacencia antes de colorir\n\n");
-    for(int i=0; i< 4; i++){
+    for(int i=0; i < NumeroDeVertices; i++){
         printf("      ");
-        for(int j=0;j < 4;j++){
+        for(int j=0; j < NumeroDeVertices; j++){
             printf("%d ", grafo[i][j]);
         }
         printf("\n");
@@ -93,9 +96,9 @@ int main(){
     int NumeroDeCores = 0;
     printf("Lista de Adjacencia Colorida\n\n");
     // percorer a lista de adjacencia que ja foi colorida, imprimindo os pontos e contando as cores
-    for(int i=0; i< 4; i++){
+    for(int i=0; i < NumeroDeVertices; i++){
         printf("      ");
-        for(int j=0;j < 4;j++){
+        for(int j=0; j < NumeroDeVertices; j++){
             printf("%d ", grafo[i][j]);
             if (grafo[i][j] - 1 > NumeroDeCores){
                 NumeroDeCores = grafo[i][j] -1;
@@ -103,5 +106,11 @@ int main(){
         }
         printf("\n");
     }
-    printf("\nForam usadas %d Cores para colorir o grafo\n", NumeroDeCores);
+    printf("\nForam usadas %d Cores para colorir o grafo\n\n", NumeroDeCores);
+
+    // Liberar a memoria que foi alocada
+    for(int i = 0; grafo[i] != NULL; i++){
+        free(grafo[i]);
+    }
+    free(grafo);
 }
